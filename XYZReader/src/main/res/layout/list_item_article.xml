@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/icons"
+                android:fontFamily="sans-serif"
                 android:ellipsize="end"
                 android:maxLines="4" />
 
@@ -35,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/primary_light"
                 android:maxLines="1"
+                android:fontFamily="sans-serif-light"
                 android:singleLine="true"
                 android:ellipsize="end" />
         </LinearLayout>

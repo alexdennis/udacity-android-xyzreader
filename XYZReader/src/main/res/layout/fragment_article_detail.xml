@@ -20,10 +20,11 @@
                 android:background="@color/primary_light">
 
                 <!--suppress AndroidLintContentDescription -->
-                <com.example.xyzreader.ui.DynamicHeightNetworkImageView
+                <ImageView
                     android:id="@+id/photo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
                      />
 
             </FrameLayout>
@@ -57,7 +58,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
-                        android:fontFamily="sans-serif-condensed"
+                        android:fontFamily="sans-serif"
                         android:textColor="#fff"
                         android:textStyle="bold"
                         android:textSize="@dimen/detail_title_text_size"
@@ -68,6 +69,7 @@
                         style="?android:attr/textAppearanceSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
                         android:textColor="#8fff" />
                 </LinearLayout>
 
