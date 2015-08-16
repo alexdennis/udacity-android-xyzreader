@@ -10,14 +10,18 @@
         <com.example.xyzreader.ui.DynamicHeightNetworkImageView
             android:id="@+id/thumbnail"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent" />
+
+        <View
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/primary" />
+            android:background="@drawable/list_item_article_scrim" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/article_list_item_header"
             android:padding="4dp"
             android:layout_gravity="bottom">
 
