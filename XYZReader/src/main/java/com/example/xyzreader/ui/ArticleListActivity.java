@@ -17,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ import com.example.xyzreader.data.UpdaterService;
  */
 public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
+
+    private static String TAG = ArticleListActivity.class.getSimpleName();
 
     private Toolbar mToolbar;
 //    private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -134,11 +137,14 @@ public class ArticleListActivity extends AppCompatActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    long itemId = getItemId(vh.getAdapterPosition());
                     Intent intent = new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
+                            ItemsContract.Items.buildItemUri(itemId));
                     ActivityOptionsCompat activityOptions =
                             ActivityOptionsCompat.makeSceneTransitionAnimation(ArticleListActivity.this,
-                                    new Pair<View, String>(vh.thumbnailView, getString(R.string.detail_icon_transition_name)));
+                                    new Pair<View, String>(vh.thumbnailView, getString(R.string.detail_icon_transition_name) + itemId));
+
+                    Log.d(TAG, "Transitioning to: " + getString(R.string.detail_icon_transition_name) + itemId);
 
                     ActivityCompat.startActivity(ArticleListActivity.this, intent, activityOptions.toBundle());
                 }
@@ -149,6 +155,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             mCursor.moveToPosition(position);
+            long itemId = mCursor.getLong(ArticleLoader.Query._ID);
             holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
             holder.subtitleView.setText(
                     DateUtils.getRelativeTimeSpanString(
@@ -160,7 +167,7 @@ public class ArticleListActivity extends AppCompatActivity implements
             holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
-            ViewCompat.setTransitionName(holder.thumbnailView, "iconView" + position);
+            ViewCompat.setTransitionName(holder.thumbnailView, "iconView" + itemId);
             holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         }
 

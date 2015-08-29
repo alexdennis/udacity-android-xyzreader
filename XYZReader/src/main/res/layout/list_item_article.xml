@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/article_title"
-                style="?android:attr/textAppearanceListItem"
+                style="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/primary_text"
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/article_subtitle"
-                style="?android:attr/textAppearanceListItemSmall"
+                style="?android:attr/textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/secondary_text"

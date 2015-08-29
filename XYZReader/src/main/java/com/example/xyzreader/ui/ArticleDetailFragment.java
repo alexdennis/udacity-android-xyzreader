@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
@@ -123,6 +124,8 @@ public class ArticleDetailFragment extends Fragment implements
         });
 
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
+        ViewCompat.setTransitionName(mPhotoView, getString(R.string.detail_icon_transition_name) + mItemId);
+        Log.d(TAG, "Setting photo view transition name to: " + getString(R.string.detail_icon_transition_name) + mItemId);
         mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
         mStatusBarColorDrawable = new ColorDrawable(0);
@@ -180,7 +183,6 @@ public class ArticleDetailFragment extends Fragment implements
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-//        bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
@@ -210,14 +212,20 @@ public class ArticleDetailFragment extends Fragment implements
                                         .setBackgroundColor(mMutedColor);
                                 updateStatusBar();
                             }
+
+                            // Waiting until the image is loaded
+                            // Too long to wait?
+                            ((AppCompatActivity) getActivity()).supportStartPostponedEnterTransition();
                         }
 
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
-
+                            ((AppCompatActivity) getActivity()).supportStartPostponedEnterTransition();
                         }
                     });
         } else {
+            ((AppCompatActivity) getActivity()).supportStartPostponedEnterTransition();
+
             mRootView.setVisibility(View.GONE);
             titleView.setText("N/A");
             bylineView.setText("N/A" );
@@ -232,8 +240,6 @@ public class ArticleDetailFragment extends Fragment implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        ((AppCompatActivity) getActivity()).supportStartPostponedEnterTransition();
-        
         if (!isAdded()) {
             if (cursor != null) {
                 cursor.close();
