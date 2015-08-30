@@ -2,6 +2,9 @@
     <dimen name="app_bar_expanded_height">150dp</dimen>
     <dimen name="app_bar_elevation">4dp</dimen>
 
+    <dimen name="list_item_margin">2dp</dimen>
+    <dimen name="list_item_title_bar_padding">4dp</dimen>
+
     <!-- detail -->
     <dimen name="detail_title_text_size">34sp</dimen>
     <dimen name="detail_body_text_size">14sp</dimen>

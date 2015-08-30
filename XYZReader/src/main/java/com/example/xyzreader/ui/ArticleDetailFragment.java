@@ -176,6 +176,7 @@ public class ArticleDetailFragment extends Fragment implements
 
     private void bindViews() {
         if (mRootView == null) {
+            startDelayedAnimation();
             return;
         }
 
@@ -215,21 +216,28 @@ public class ArticleDetailFragment extends Fragment implements
 
                             // Waiting until the image is loaded
                             // Too long to wait?
-                            ((AppCompatActivity) getActivity()).supportStartPostponedEnterTransition();
+                            startDelayedAnimation();
                         }
 
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
-                            ((AppCompatActivity) getActivity()).supportStartPostponedEnterTransition();
+                            startDelayedAnimation();
                         }
                     });
         } else {
-            ((AppCompatActivity) getActivity()).supportStartPostponedEnterTransition();
+            startDelayedAnimation();
 
             mRootView.setVisibility(View.GONE);
             titleView.setText("N/A");
             bylineView.setText("N/A" );
             bodyView.setText("N/A");
+        }
+    }
+
+    private void startDelayedAnimation() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null) {
+            activity.supportStartPostponedEnterTransition();
         }
     }
 
