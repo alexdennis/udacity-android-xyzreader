@@ -7,6 +7,7 @@
     <string name="action_share">Share</string>
 
     <string name="up">Up</string>
+    <string name="refreshing">Refreshing...</string>
 
     <string name="detail_icon_transition_name" translatable="false">TN_DetailIcon</string>
 </resources>
