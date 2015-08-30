@@ -24,8 +24,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:elevation="4dp"
+        android:layout_height="@dimen/app_bar_expanded_height"
+        android:elevation="@dimen/app_bar_elevation"
         android:background="?colorPrimary">
 
         <android.support.design.widget.CollapsingToolbarLayout

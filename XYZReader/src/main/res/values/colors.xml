@@ -16,9 +16,7 @@
 -->
 
 <resources>
-    <color name="photo_placeholder">#ccc</color>
-
-    <color name="ltgray">#ffe0e0e0</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="primary">#FF5722</color>
     <color name="primary_dark">#E64A19</color>
@@ -28,6 +26,4 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
-
-    <color name="article_list_item_header">#99727272</color>
 </resources>
